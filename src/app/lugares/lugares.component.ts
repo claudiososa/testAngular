@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LugaresService } from '../services/lugares.service';
 
 @Component({
   selector: 'app-lugares',
@@ -7,14 +8,11 @@ import { Component } from '@angular/core';
 })
 export class LugaresComponent {
   title = 'Platzi  Square';
-  lugares : any = [
-    {id:1,plan:'pagado',cercania:1,distancia:1,active:true,nombre:'Floreria la Gardenia'},
-    {id:2,plan:'pagado',cercania:1,distancia:1.8,active:true,nombre:'Donas la pasadita'},
-    {id:3,plan:'gratuito',cercania:2,distancia:5,active:true,nombre:'Veteriania Huellitas felices'},
-    {id:4,plan:'gratuito',cercania:3,distancia:10,active:false,nombre:'Sushi Suhiroll'},
-    {id:5,plan:'pagado',cercania:3,distancia:35,active:false,nombre:'Hotel la Gracia'},
-    {id:6,plan:'gratuito',cercania:31,distancia:120,active:true,nombre:'Zapateria el Clavo'}
-  ];
+  lugares = null;
+  constructor(private lugaresService: LugaresService) {
+    this.lugares = lugaresService.getLugares();
+  }
+
   lat:number = -24.791377;
   lng:number = -65.432180;
   personas:any = [
